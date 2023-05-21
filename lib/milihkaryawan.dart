@@ -3,14 +3,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:gaji_karyawan/models.dart';
 import 'package:gaji_karyawan/repository.dart';
 
-class DataKaryawan extends StatefulWidget {
-  const DataKaryawan({super.key});
+class MilihKaryawan extends StatefulWidget {
+  const MilihKaryawan({super.key});
 
   @override
-  State<DataKaryawan> createState() => _DataKaryawanState();
+  State<MilihKaryawan> createState() => _MilihKaryawanState();
 }
 
-class _DataKaryawanState extends State<DataKaryawan> {
+class _MilihKaryawanState extends State<MilihKaryawan> {
   List<Karyawan> listKaryawan = [];
   RepositoryKaryawan repository = RepositoryKaryawan();
 
@@ -52,7 +52,7 @@ class _DataKaryawanState extends State<DataKaryawan> {
                     height: 20,
                   ),
                   Text(
-                    "Data Karyawan",
+                    "Pilih Karyawan",
                     style: GoogleFonts.openSans(
                         textStyle: TextStyle(
                             color: Colors.white,
@@ -78,34 +78,38 @@ class _DataKaryawanState extends State<DataKaryawan> {
             ),
             const SizedBox(height: 20),
             for (var karyawan in listKaryawan) ...[
-              Padding(
-                padding: const EdgeInsets.all(11),
-                child: Container(
-                  decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 31, 33, 34),
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  child: Column(
-                    children: [
-                      SizedBox(
-                        height: 20,
-                      ),
-                      ProfileDetailColumn(
-                        title: 'Nama      : ' + karyawan.nama,
-                      ),
-                      ProfileDetailColumn(
-                        title: 'Jabatan   : ' + karyawan.jabatan,
-                      ),
-                      ProfileDetailColumn(
-                        title: 'NIP           : ' + karyawan.nip,
-                      ),
-                      ProfileDetailColumn(
-                        title: 'TTL           : ' + karyawan.ttl,
-                      ),
-                      ProfileDetailColumn(
-                        title: 'Alamat     : ' + karyawan.alamat,
-                      ),
-                    ],
+              GestureDetector(
+                onTap: () {
+                  // Tambahkan logika yang Anda inginkan saat item di-klik
+                  Navigator.pushNamed(
+                    context,
+                    '/gaji',
+                    arguments: [karyawan.nama, karyawan.jabatan],
+                  );
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(11),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 31, 33, 34),
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Column(
+                      children: [
+                        SizedBox(
+                          height: 20,
+                        ),
+                        ProfileDetailColumn(
+                          title: 'Nama      : ' + karyawan.nama,
+                        ),
+                        ProfileDetailColumn(
+                          title: 'Jabatan   : ' + karyawan.jabatan,
+                        ),
+                        ProfileDetailColumn(
+                          title: 'NIP           : ' + karyawan.nip,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

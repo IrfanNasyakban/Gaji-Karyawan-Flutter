@@ -4,32 +4,42 @@ import 'package:gaji_karyawan/datakaryawan.dart';
 import 'package:gaji_karyawan/gaji.dart';
 import 'package:gaji_karyawan/login.dart';
 import 'package:gaji_karyawan/mainpage.dart';
+import 'package:gaji_karyawan/milihkaryawan.dart';
+import 'package:gaji_karyawan/profile.dart';
 import 'package:gaji_karyawan/riwayat.dart';
+import 'package:gaji_karyawan/riwayatkaryawan.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class GridDashboard extends StatelessWidget {
   final user = FirebaseAuth.instance.currentUser!;
 
   Items item1 = new Items(
-    title: "Profile",
+    title: "Data Karyawan",
     img: "assets/calendar.png",
     nextPage: DataKaryawan(),
   );
 
-  Items item2 =
-      new Items(title: "Input Gaji", img: "assets/food.png", nextPage: Gaji());
+  Items item2 = new Items(
+      title: "Profile", img: "assets/food.png", nextPage: ProfileKaryawan());
   Items item3 = new Items(
+      title: "Input Gaji", img: "assets/map.png", nextPage: MilihKaryawan());
+  Items item4 = new Items(
       title: "Riwayat Gaji", img: "assets/map.png", nextPage: Riwayat());
+  Items item5 = new Items(
+      title: "Riwayat Gaji",
+      img: "assets/map.png",
+      nextPage: RiwayatKaryawan());
 
   @override
   Widget build(BuildContext context) {
     String userEmail = user.email!;
-    bool showAllItems = userEmail == "puput@admin.com";
 
     List<Items> myList = [
-      item1,
-      if (showAllItems) item2,
-      item3,
+      if (userEmail == "puput@admin.com") item1,
+      if (userEmail == "puput@admin.com") item3,
+      if (userEmail == "puput@admin.com") item4,
+      if (userEmail != "puput@admin.com") item2,
+      if (userEmail != "puput@admin.com") item5,
       Items(
         title: "Keluar",
         img: "assets/festival.png",

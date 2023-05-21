@@ -1,31 +1,28 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:gaji_karyawan/models.dart';
 import 'package:gaji_karyawan/repository.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-class Riwayat extends StatefulWidget {
-  const Riwayat({super.key});
+class ProfileKaryawan extends StatefulWidget {
+  const ProfileKaryawan({super.key});
 
   @override
-  State<Riwayat> createState() => _RiwayatState();
+  State<ProfileKaryawan> createState() => _ProfileKaryawanState();
 }
 
-class _RiwayatState extends State<Riwayat> {
-  final user = FirebaseAuth.instance.currentUser!;
+class _ProfileKaryawanState extends State<ProfileKaryawan> {
+  List<Karyawan> listKaryawan = [];
+  RepositoryKaryawan repository = RepositoryKaryawan();
 
-  List<Gaji> listGaji = [];
-  RepositoryGaji repository = RepositoryGaji();
-
-  getData() async {
+  getDataId() async {
     try {
-      listGaji = await repository.getData();
+      listKaryawan = await repository.getDataId();
       setState(() {});
     } catch (error) {
       // Tangani error dengan sesuai, misalnya tampilkan pesan kesalahan
       print('Error: $error');
       setState(() {
-        listGaji = []; // Set listImage ke daftar kosong
+        listKaryawan = []; // Set listSiswa ke daftar kosong
       });
     }
   }
@@ -33,7 +30,7 @@ class _RiwayatState extends State<Riwayat> {
   @override
   void initState() {
     super.initState();
-    getData();
+    getDataId();
   }
 
   @override
@@ -55,7 +52,7 @@ class _RiwayatState extends State<Riwayat> {
                     height: 20,
                   ),
                   Text(
-                    "Daftar Gaji",
+                    "Data Karyawan",
                     style: GoogleFonts.openSans(
                         textStyle: TextStyle(
                             color: Colors.white,
@@ -80,7 +77,7 @@ class _RiwayatState extends State<Riwayat> {
               ),
             ),
             const SizedBox(height: 20),
-            for (var gaji in listGaji) ...[
+            for (var karyawan in listKaryawan) ...[
               Padding(
                 padding: const EdgeInsets.all(11),
                 child: Container(
@@ -94,27 +91,24 @@ class _RiwayatState extends State<Riwayat> {
                         height: 20,
                       ),
                       ProfileDetailColumn(
-                        title: 'Nama         : ' + gaji.nama,
+                        title: 'Nama      : ' + karyawan.nama,
                       ),
                       ProfileDetailColumn(
-                        title: 'Jabatan      : ' + gaji.jabatan,
+                        title: 'Jabatan   : ' + karyawan.jabatan,
                       ),
                       ProfileDetailColumn(
-                        title: 'Izin              : ' + gaji.izin,
+                        title: 'NIP           : ' + karyawan.nip,
                       ),
                       ProfileDetailColumn(
-                        title: 'Alpa            : ' + gaji.alpa,
+                        title: 'TTL           : ' + karyawan.ttl,
                       ),
                       ProfileDetailColumn(
-                        title: 'Potongan   : ' + gaji.potongan_gaji,
-                      ),
-                      ProfileDetailColumn(
-                        title: 'Total Gaji   : ' + gaji.gaji_bersih,
+                        title: 'Alamat     : ' + karyawan.alamat,
                       ),
                     ],
                   ),
                 ),
-              )
+              ),
             ]
           ],
         ),
@@ -128,26 +122,24 @@ class ProfileDetailColumn extends StatelessWidget {
   final String title;
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            title,
-            style: GoogleFonts.openSans(
-              color: Colors.white,
-              fontSize: 18,
-            ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title,
+          style: GoogleFonts.openSans(
+            color: Colors.white,
+            fontSize: 18,
           ),
-          SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            width: 320,
-            height: 10,
-          )
-        ],
-      ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        SizedBox(
+          width: 320,
+          height: 10,
+        )
+      ],
     );
   }
 }

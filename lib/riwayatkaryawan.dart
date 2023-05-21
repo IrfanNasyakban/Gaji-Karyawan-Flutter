@@ -4,22 +4,22 @@ import 'package:gaji_karyawan/models.dart';
 import 'package:gaji_karyawan/repository.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class Riwayat extends StatefulWidget {
-  const Riwayat({super.key});
+class RiwayatKaryawan extends StatefulWidget {
+  const RiwayatKaryawan({super.key});
 
   @override
-  State<Riwayat> createState() => _RiwayatState();
+  State<RiwayatKaryawan> createState() => _RiwayatKaryawanState();
 }
 
-class _RiwayatState extends State<Riwayat> {
+class _RiwayatKaryawanState extends State<RiwayatKaryawan> {
   final user = FirebaseAuth.instance.currentUser!;
 
   List<Gaji> listGaji = [];
   RepositoryGaji repository = RepositoryGaji();
 
-  getData() async {
+  getDataId() async {
     try {
-      listGaji = await repository.getData();
+      listGaji = await repository.getDataId();
       setState(() {});
     } catch (error) {
       // Tangani error dengan sesuai, misalnya tampilkan pesan kesalahan
@@ -33,11 +33,20 @@ class _RiwayatState extends State<Riwayat> {
   @override
   void initState() {
     super.initState();
-    getData();
+    getDataId();
   }
 
   @override
   Widget build(BuildContext context) {
+    String userEmail = user.email!;
+    String username;
+
+    if (userEmail == 'meydiana@gmail.com') {
+      username = 'Meydiana';
+    } else {
+      username = 'Enisa Warni';
+    }
+
     return Scaffold(
       body: Container(
         color: Color.fromARGB(255, 10, 20, 24),

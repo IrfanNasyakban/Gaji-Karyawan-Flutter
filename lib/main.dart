@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:gaji_karyawan/datakaryawan.dart';
+import 'package:gaji_karyawan/gaji.dart';
 import 'package:gaji_karyawan/splashscreen.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -18,9 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: SplashScreen(),
       routes: {
-        '/next1': (context) => DataKaryawan(),
-        // '/next2': (context) => NextPage2(),
-        // ...
+        '/gaji': (context) => Gaji(),
       },
     );
   }

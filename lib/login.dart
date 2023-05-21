@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:gaji_karyawan/dashboard.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'dart:io' show exit;
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -133,7 +134,9 @@ class _LoginState extends State<Login> {
                           left: 40, right: 40, top: 15, bottom: 15)),
                   SizedBox(width: 30),
                   MaterialButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        exit(0);
+                      },
                       child: Text(
                         'Keluar',
                         style: TextStyle(
