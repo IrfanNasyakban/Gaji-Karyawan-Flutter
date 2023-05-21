@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "754046681580",
+    "project_id": "gaji-karyawan-2dbaa",
+    "storage_bucket": "gaji-karyawan-2dbaa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754046681580:android:ebb4c303e52967b57040c9",
+        "android_client_info": {
+          "package_name": "com.example.gaji_karyawan"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754046681580-vt93jo348tpnbngmnps3vvaa1joflac7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC95xXPm4Dx3sjZuEv2AYTaklNA1-NgYE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754046681580-vt93jo348tpnbngmnps3vvaa1joflac7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
