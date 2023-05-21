@@ -15,19 +15,19 @@ class GridDashboard extends StatelessWidget {
 
   Items item1 = new Items(
     title: "Data Karyawan",
-    img: "assets/calendar.png",
+    img: "assets/profile.png",
     nextPage: DataKaryawan(),
   );
 
   Items item2 = new Items(
-      title: "Profile", img: "assets/food.png", nextPage: ProfileKaryawan());
+      title: "Profile", img: "assets/profile.png", nextPage: ProfileKaryawan());
   Items item3 = new Items(
-      title: "Input Gaji", img: "assets/map.png", nextPage: MilihKaryawan());
+      title: "Input Gaji", img: "assets/input.png", nextPage: MilihKaryawan());
   Items item4 = new Items(
-      title: "Riwayat Gaji", img: "assets/map.png", nextPage: Riwayat());
+      title: "Riwayat Gaji", img: "assets/riwayat.png", nextPage: Riwayat());
   Items item5 = new Items(
       title: "Riwayat Gaji",
-      img: "assets/map.png",
+      img: "assets/riwayat.png",
       nextPage: RiwayatKaryawan());
 
   @override
@@ -42,7 +42,7 @@ class GridDashboard extends StatelessWidget {
       if (userEmail != "puput@admin.com") item5,
       Items(
         title: "Keluar",
-        img: "assets/festival.png",
+        img: "assets/keluar.png",
         nextPage: MainPage(),
         onPressed: () {
           FirebaseAuth.instance.signOut().then((value) {
