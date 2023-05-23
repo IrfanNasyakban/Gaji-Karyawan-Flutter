@@ -17,11 +17,13 @@ class _SplashScreenState extends State<SplashScreen> {
           const Text(
             'PT. Amarta Karya',
             style: TextStyle(
-                fontSize: 30, fontWeight: FontWeight.bold, color: Colors.blueAccent),
+                fontSize: 30,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 14, 21, 19)),
           )
         ],
       ),
-      backgroundColor: Colors.yellow,
+      backgroundColor: Color.fromARGB(255, 51, 181, 172),
       nextScreen: MainPage(),
       splashIconSize: 250,
       duration: 4000,

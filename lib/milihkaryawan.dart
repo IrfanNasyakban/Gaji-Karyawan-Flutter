@@ -91,7 +91,7 @@ class _MilihKaryawanState extends State<MilihKaryawan> {
                   padding: const EdgeInsets.all(11),
                   child: Container(
                     decoration: BoxDecoration(
-                      color: Color.fromARGB(255, 31, 33, 34),
+                      color: Color.fromARGB(255, 64, 142, 146),
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Column(

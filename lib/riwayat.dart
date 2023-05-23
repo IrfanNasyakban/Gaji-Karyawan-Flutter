@@ -40,7 +40,7 @@ class _RiwayatState extends State<Riwayat> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color.fromARGB(255, 10, 20, 24),
+        color: Color.fromARGB(255, 60, 153, 156),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -85,7 +85,7 @@ class _RiwayatState extends State<Riwayat> {
                 padding: const EdgeInsets.all(11),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 31, 33, 34),
+                    color: Color.fromARGB(255, 20, 21, 22),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Column(
@@ -103,13 +103,22 @@ class _RiwayatState extends State<Riwayat> {
                         title: 'Izin              : ' + gaji.izin,
                       ),
                       ProfileDetailColumn(
-                        title: 'Alpa            : ' + gaji.alpa,
+                        title: 'Alpa            : ' +gaji.alpa ,
                       ),
                       ProfileDetailColumn(
                         title: 'Potongan   : ' + gaji.potongan_gaji,
                       ),
                       ProfileDetailColumn(
-                        title: 'Total Gaji   : ' + gaji.gaji_bersih,
+                        title: 'Gaji Pokok   : ' + gaji.gaji_pokok,
+                      ),
+                      ProfileDetailColumn(
+                        title: 'Tunjangan   : ' + gaji.tunjangan,
+                      ),
+                      ProfileDetailColumn(
+                        title: 'Bonus           : ' + gaji.bonus,
+                      ),
+                      ProfileDetailColumn(
+                        title: 'Total Gaji           : ' + gaji.bonus,
                       ),
                     ],
                   ),
@@ -125,27 +134,23 @@ class _RiwayatState extends State<Riwayat> {
 
 class ProfileDetailColumn extends StatelessWidget {
   const ProfileDetailColumn({Key? key, required this.title}) : super(key: key);
-  final String title;
+  final String? title; // Ubah tipe data menjadi String?
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: GoogleFonts.openSans(
-              color: Colors.white,
-              fontSize: 18,
+          if (title != null) // Tambahkan pengecekan nullability
+            Text(
+              title!,
+              style: GoogleFonts.openSans(
+                color: Colors.white,
+                fontSize: 18,
+              ),
             ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          SizedBox(
-            width: 320,
-            height: 10,
-          )
+          SizedBox(height: 10),
+          SizedBox(width: 320, height: 10),
         ],
       ),
     );

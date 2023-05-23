@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gaji_karyawan/milihkaryawan.dart';
 import 'package:gaji_karyawan/repository.dart';
 import 'package:gaji_karyawan/dashboard.dart';
+import 'package:gaji_karyawan/riwayat.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class Gaji extends StatefulWidget {
@@ -17,20 +19,44 @@ class _GajiState extends State<Gaji> {
   final _textIzinController = TextEditingController();
   final _textAlpaController = TextEditingController();
   final _textPotonganController = TextEditingController();
+  final _textGajiController = TextEditingController();
+  final _textTunjanganController = TextEditingController();
+  final _textBonusController = TextEditingController();
   final _textTotalController = TextEditingController();
-
-  int gajiBersih = 1000000;
 
   int? selectedValue1;
   int? selectedValue2;
 
   void calculatePotonganGaji(int alpaCount) {
-    int potonganGaji = alpaCount * 100000;
-    int gajiBersih = 1000000 - potonganGaji;
+    double gajiBersih;
+
+    if (_textJabatanController.text == 'Karyawan') {
+      gajiBersih = 1000000;
+    } else if (_textJabatanController.text == 'HRD') {
+      gajiBersih = 3000000;
+    } else {
+      gajiBersih = 4000000;
+    }
+
+    double potonganGaji = alpaCount * 100000;
+    double gajiBersihdua = gajiBersih - potonganGaji;
 
     // Update nilai pada controller
     _textPotonganController.text = potonganGaji.toString();
-    _textTotalController.text = gajiBersih.toString();
+    _textGajiController.text = gajiBersihdua.toString();
+
+    // Update nilai gaji pokok
+    gajiPokok = gajiBersihdua;
+    calculateTotalGaji();
+  }
+
+  double gajiPokok = 0.0;
+  double tunjangan = 0.0;
+  double bonus = 0.0;
+
+  void calculateTotalGaji() {
+    double totalGaji = gajiPokok + tunjangan + bonus;
+    _textTotalController.text = totalGaji.toString();
   }
 
   @override
@@ -53,7 +79,7 @@ class _GajiState extends State<Gaji> {
 
     return Scaffold(
       body: Container(
-        color: Color.fromARGB(255, 10, 20, 24),
+        color: Color.fromARGB(255, 55, 121, 129),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -167,6 +193,10 @@ class _GajiState extends State<Gaji> {
                         ),
                         items: [
                           DropdownMenuItem<int>(
+                            value: 0,
+                            child: Text('-'),
+                          ),
+                          DropdownMenuItem<int>(
                             value: 1,
                             child: Text('1'),
                           ),
@@ -219,6 +249,10 @@ class _GajiState extends State<Gaji> {
                         ),
                         items: [
                           DropdownMenuItem<int>(
+                            value: 0,
+                            child: Text('-'),
+                          ),
+                          DropdownMenuItem<int>(
                             value: 1,
                             child: Text('1'),
                           ),
@@ -248,21 +282,115 @@ class _GajiState extends State<Gaji> {
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Colors.grey[200],
-                      border: Border.all(color: Colors.white),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 20.0),
-                      child: TextField(
-                          controller: _textPotonganController,
-                          decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: 'Potongan Gaji',
-                          )),
-                    ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: TextField(
+                              controller: _textPotonganController,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Potongan Gaji',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: TextField(
+                              controller: _textGajiController,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Gaji Pokok',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  gajiPokok = double.parse(value);
+                                });
+                                calculateTotalGaji();
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: TextField(
+                              controller: _textTunjanganController,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Tunjangan',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  tunjangan = double.parse(value);
+                                });
+                                calculateTotalGaji();
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.grey[200],
+                            border: Border.all(color: Colors.white),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 20.0),
+                            child: TextField(
+                              controller: _textBonusController,
+                              decoration: InputDecoration(
+                                border: InputBorder.none,
+                                hintText: 'Bonus',
+                              ),
+                              onChanged: (value) {
+                                setState(() {
+                                  bonus = double.parse(value);
+                                });
+                                calculateTotalGaji();
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(
@@ -282,7 +410,7 @@ class _GajiState extends State<Gaji> {
                           controller: _textTotalController,
                           decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: 'Gaji Bersih',
+                            hintText: 'Total Gaji',
                           )),
                     ),
                   ),
@@ -296,19 +424,23 @@ class _GajiState extends State<Gaji> {
                     MaterialButton(
                         onPressed: () async {
                           bool response = await repository.postData(
-                              _textNamaController.text,
-                              _textJabatanController.text,
-                              _textIzinController.text,
-                              _textAlpaController.text,
-                              _textPotonganController.text,
-                              _textTotalController.text);
+                            _textNamaController.text,
+                            _textJabatanController.text,
+                            _textIzinController.text,
+                            _textAlpaController.text,
+                            _textPotonganController.text,
+                            _textGajiController.text,
+                            _textTunjanganController.text,
+                            _textBonusController.text,
+                            _textTotalController.text,
+                          );
 
                           if (response) {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
                                 builder: (context) {
-                                  return Dashboard();
+                                  return Riwayat();
                                 },
                               ),
                             );

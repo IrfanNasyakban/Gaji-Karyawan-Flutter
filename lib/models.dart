@@ -33,7 +33,10 @@ class Gaji {
   String izin;
   String alpa;
   String potongan_gaji;
-  String gaji_bersih;
+  String gaji_pokok;
+  String tunjangan;
+  String bonus;
+  String total_gaji;
   String id;
 
   Gaji({
@@ -42,7 +45,10 @@ class Gaji {
     required this.izin,
     required this.alpa,
     required this.potongan_gaji,
-    required this.gaji_bersih,
+    required this.gaji_pokok,
+    required this.tunjangan,
+    required this.bonus,
+    required this.total_gaji,
     required this.id,
   });
 
@@ -53,7 +59,10 @@ class Gaji {
       izin: json['izin'],
       alpa: json['alpa'],
       potongan_gaji: json['potongan_gaji'],
-      gaji_bersih: json['gaji_bersih'],
+      gaji_pokok: json['gaji_pokok'],
+      tunjangan: json['tunjangan'],
+      bonus: json['bonus'],
+      total_gaji: json['total_gaji'],
       id: json['id'],
     );
   }

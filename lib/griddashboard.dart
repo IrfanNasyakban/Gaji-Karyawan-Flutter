@@ -80,7 +80,7 @@ class GridDashboard extends StatelessWidget {
             },
             child: Container(
               decoration: BoxDecoration(
-                color: Color(color),
+                color: Color.fromARGB(255, 11, 100, 115),
                 borderRadius: BorderRadius.circular(10),
               ),
               child: Column(

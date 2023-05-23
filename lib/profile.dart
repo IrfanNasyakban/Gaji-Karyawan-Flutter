@@ -37,7 +37,7 @@ class _ProfileKaryawanState extends State<ProfileKaryawan> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color.fromARGB(255, 10, 20, 24),
+        color: Color.fromARGB(255, 64, 93, 75),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -45,7 +45,7 @@ class _ProfileKaryawanState extends State<ProfileKaryawan> {
               height: 20,
             ),
             Container(
-              color: Color.fromARGB(255, 10, 20, 24),
+              color: Color.fromARGB(255, 41, 94, 99),
               child: Column(
                 children: [
                   SizedBox(
@@ -82,7 +82,7 @@ class _ProfileKaryawanState extends State<ProfileKaryawan> {
                 padding: const EdgeInsets.all(11),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 31, 33, 34),
+                    color: Color.fromARGB(255, 27, 144, 162),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Column(

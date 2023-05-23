@@ -12,9 +12,8 @@ class RepositoryKaryawan {
     final response = await http.get(Uri.parse(_baseUrl + '/karyawan'));
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body);
-      final List<Karyawan> karyawanList = responseData
-          .map((json) => Karyawan.fromJson(json))
-          .toList();
+      final List<Karyawan> karyawanList =
+          responseData.map((json) => Karyawan.fromJson(json)).toList();
       return karyawanList;
     } else {
       throw Exception('Failed to fetch data');
@@ -30,7 +29,7 @@ class RepositoryKaryawan {
     } else {
       username = 'Enisa Warni';
     }
-    
+
     final response = await http.get(Uri.parse(_baseUrl + '/karyawan'));
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body);
@@ -43,7 +42,6 @@ class RepositoryKaryawan {
       throw Exception('Failed to fetch data');
     }
   }
-
 }
 
 class RepositoryGaji {
@@ -54,9 +52,8 @@ class RepositoryGaji {
     final response = await http.get(Uri.parse(_baseUrl + '/gaji'));
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body);
-      final List<Gaji> gajiList = responseData
-          .map((json) => Gaji.fromJson(json))
-          .toList();
+      final List<Gaji> gajiList =
+          responseData.map((json) => Gaji.fromJson(json)).toList();
       return gajiList;
     } else {
       throw Exception('Failed to fetch data');
@@ -72,7 +69,7 @@ class RepositoryGaji {
     } else {
       username = 'Enisa Warni';
     }
-    
+
     final response = await http.get(Uri.parse(_baseUrl + '/gaji'));
     if (response.statusCode == 200) {
       final List<dynamic> responseData = json.decode(response.body);
@@ -87,17 +84,27 @@ class RepositoryGaji {
   }
 
   Future postData(
-      String nama, String jabatan, String izin, String alpa, String potongan_gaji, String gaji_bersih) async {
+      String nama,
+      String jabatan,
+      String izin,
+      String alpa,
+      String potongan_gaji,
+      String gaji_pokok,
+      String tunjangan,
+      String bonus,
+      String total_gaji) async {
     try {
-      final response = await http.post(Uri.parse(_baseUrl + '/gaji'),
-          body: {
-            "nama": nama,
-            "jabatan": jabatan,
-            "izin": izin,
-            "alpa": alpa,
-            "potongan_gaji": potongan_gaji,
-            "gaji_bersih": gaji_bersih
-          });
+      final response = await http.post(Uri.parse(_baseUrl + '/gaji'), body: {
+        "nama": nama,
+        "jabatan": jabatan,
+        "izin": izin,
+        "alpa": alpa,
+        "potongan_gaji": potongan_gaji,
+        "gaji_pokok": gaji_pokok,
+        "tunjangan": tunjangan,
+        "bonus": bonus,
+        "total_gaji": total_gaji
+      });
 
       if (response.statusCode == 201) {
         return true;

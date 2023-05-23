@@ -49,7 +49,7 @@ class _RiwayatKaryawanState extends State<RiwayatKaryawan> {
 
     return Scaffold(
       body: Container(
-        color: Color.fromARGB(255, 10, 20, 24),
+        color: Color.fromARGB(255, 51, 78, 78),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -57,7 +57,7 @@ class _RiwayatKaryawanState extends State<RiwayatKaryawan> {
               height: 20,
             ),
             Container(
-              color: Color.fromARGB(255, 10, 20, 24),
+              color: Color.fromARGB(255, 34, 132, 162),
               child: Column(
                 children: [
                   SizedBox(
@@ -94,7 +94,7 @@ class _RiwayatKaryawanState extends State<RiwayatKaryawan> {
                 padding: const EdgeInsets.all(11),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 31, 33, 34),
+                    color: Color.fromARGB(255, 15, 60, 124),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Column(
@@ -118,7 +118,16 @@ class _RiwayatKaryawanState extends State<RiwayatKaryawan> {
                         title: 'Potongan   : ' + gaji.potongan_gaji,
                       ),
                       ProfileDetailColumn(
-                        title: 'Total Gaji   : ' + gaji.gaji_bersih,
+                        title: 'Gaji Pokok  : ' + gaji.gaji_pokok,
+                      ),
+                      ProfileDetailColumn(
+                        title: 'Tunjangan   : ' + gaji.tunjangan,
+                      ),
+                      ProfileDetailColumn(
+                        title: 'Bonus   : ' + gaji.bonus,
+                      ),
+                      ProfileDetailColumn(
+                        title: 'Total Gaji : ' + gaji.gaji_pokok,
                       ),
                     ],
                   ),

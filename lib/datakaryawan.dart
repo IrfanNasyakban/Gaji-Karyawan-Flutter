@@ -37,7 +37,7 @@ class _DataKaryawanState extends State<DataKaryawan> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        color: Color.fromARGB(255, 10, 20, 24),
+        color: Color.fromRGBO(255, 255, 255, 1),
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
@@ -45,7 +45,7 @@ class _DataKaryawanState extends State<DataKaryawan> {
               height: 20,
             ),
             Container(
-              color: Color.fromARGB(255, 10, 20, 24),
+              color: Color.fromARGB(255, 0, 3, 4),
               child: Column(
                 children: [
                   SizedBox(
@@ -55,7 +55,7 @@ class _DataKaryawanState extends State<DataKaryawan> {
                     "Data Karyawan",
                     style: GoogleFonts.openSans(
                         textStyle: TextStyle(
-                            color: Colors.white,
+                            color: Color.fromRGBO(255, 255, 255, 1),
                             fontSize: 28,
                             fontWeight: FontWeight.bold)),
                   ),
@@ -66,7 +66,7 @@ class _DataKaryawanState extends State<DataKaryawan> {
                     "PT. AMARTA KARYA",
                     style: GoogleFonts.openSans(
                         textStyle: TextStyle(
-                            color: Color(0xffa29aac),
+                            color: Color.fromARGB(255, 209, 239, 238),
                             fontSize: 14,
                             fontWeight: FontWeight.w600)),
                   ),
@@ -82,7 +82,7 @@ class _DataKaryawanState extends State<DataKaryawan> {
                 padding: const EdgeInsets.all(11),
                 child: Container(
                   decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 31, 33, 34),
+                    color: Color.fromARGB(255, 6, 65, 75),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Column(
